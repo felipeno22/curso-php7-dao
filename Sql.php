@@ -9,14 +9,14 @@ class Sql extends PDO{
 	
 	public function  __construct(){
 		
-		$this->conn=new PDO("mysql:dbname=lojaracao;host=127.0.0.1","root","" );
+		$this->conn=new PDO("mysql:dbname=loja_racao;host=127.0.0.1","root","" );
 		
 		
 	}
 	
 	
 	
-	private function setParams($statement, $parameters = array())
+	public function setParams($statement, $parameters = array())
 	{
 
 		foreach ($parameters as $key => $value) {
@@ -27,14 +27,14 @@ class Sql extends PDO{
 
 	}
 
-	private function bindParam($statement, $key, $value)
+	public function bindParam($statement, $key, $value)
 	{
 
 		$statement->bindParam($key, $value);
 
 	}
 
-	private function query($rawQuery, $params = array())
+	public function query($rawQuery, $params = array())
 	{
 
 		$stmt = $this->conn->prepare($rawQuery);
@@ -47,12 +47,11 @@ class Sql extends PDO{
 
 	}
 
-	private function select($rawQuery, $params = array()):array
+	public function select($rawQuery, $params = array()):array
 	{
 
-		$stmt = $this->conn->prepare($rawQuery);
 
-		 $stmt=$this->query($rawQuery, $params = array())
+		 $stmt=$this->query($rawQuery, $params = array());
 
 	
 
